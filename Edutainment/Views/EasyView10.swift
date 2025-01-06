@@ -70,7 +70,9 @@ struct EasyView10: View {
                 .padding()
                 Picker("Select a Number", selection: $selection) {
                     ForEach(products, id: \.self) { number in
-                        Text("\(number)").tag(number)
+                        Text("\(number)")
+                            .foregroundColor(.black) 
+                            .tag(number)
                     }
                 }
                 .pickerStyle()

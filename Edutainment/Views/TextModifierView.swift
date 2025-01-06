@@ -149,8 +149,12 @@ struct TextModifierView7: ViewModifier {
 struct TextModifierView8: ViewModifier {
     func body(content: Content) -> some View {
         content
+            .foregroundStyle(Color .black)
             .pickerStyle(WheelPickerStyle())
+            .fontWeight(.bold)
             .cornerRadius(1)         // Optional: gives the picker rounded corners
             .shadow(radius: 0)        // Optional: adds a shadow for better visibility
     }
 }
+
+

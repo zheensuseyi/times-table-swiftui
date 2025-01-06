@@ -100,7 +100,9 @@ struct EasyView5: View {
                 // Picker selector, this is how the user will select their answer
                 Picker("Select a Number", selection: $selection) {
                     ForEach(products, id: \.self) { number in
-                        Text("\(number)").tag(number)
+                        Text("\(number)")
+                            .foregroundColor(.black)
+                            .tag(number)
                     }
                 }
                 
