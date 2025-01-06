@@ -35,6 +35,7 @@ struct MediumView5: View {
         for a in 2...7 {
             for b in 2...7 {
                 productsSet.insert(a * b)
+                print("hi")
             }
         }
         return productsSet.sorted()  
