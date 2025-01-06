@@ -105,7 +105,7 @@ struct EasyView5: View {
                 }
                 
                 // Wheel Style picker
-                .pickerStyle(WheelPickerStyle())
+                .pickerStyle()
                 Spacer()
                 .padding()
                 

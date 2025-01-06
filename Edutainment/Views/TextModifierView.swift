@@ -71,6 +71,13 @@ extension View {
     }
 }
 
+// Picker modifier
+extension View {
+    func pickerStyle() -> some View {
+        self.modifier(TextModifierView8())
+    }
+}
+
 
 // Text Modifier 
 struct TextModifierView2: ViewModifier {
@@ -136,5 +143,14 @@ struct TextModifierView7: ViewModifier {
                 LinearGradient(gradient: Gradient(colors: [.pink, .teal, .blue]), startPoint: .top, endPoint: .bottom)
             )
             .ignoresSafeArea()
+    }
+}
+// Picker modifer
+struct TextModifierView8: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .pickerStyle(WheelPickerStyle())
+            .cornerRadius(1)         // Optional: gives the picker rounded corners
+            .shadow(radius: 0)        // Optional: adds a shadow for better visibility
     }
 }

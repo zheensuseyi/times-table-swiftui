@@ -74,13 +74,12 @@ struct HardView20: View {
                         Text("\(number)").tag(number)
                     }
                 }
-                .pickerStyle(WheelPickerStyle())
+                .pickerStyle()
                 Spacer()
-                .padding()
+                .padding()                // Optional: adds padding around the picker
                 Button(action: { numberSelected(selection) }) {
                     Text("Tap Here To Enter Answer 🚨")
                         .buttonTextStyle()
-                    
                 }
                 .rotationEffect(.degrees(animationAmount))
                 .animation(.easeInOut(duration: 1.0), value: animationAmount)

@@ -74,7 +74,7 @@ struct HardView10: View {
                         Text("\(number)").tag(number)
                     }
                 }
-                .pickerStyle(WheelPickerStyle())
+                .pickerStyle()
                 Spacer()
                 .padding()
                 Button(action: { numberSelected(selection) }) {
