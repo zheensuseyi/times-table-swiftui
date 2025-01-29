@@ -20,22 +20,21 @@ struct EasyQuestionSelect: View {
                     Spacer()
                     
                     // On tap takes user to easy game screen with 5 questions
-                    NavigationLink(destination: EasyView5()) {
+                    NavigationLink(destination: EasyView5(vm: EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 5)))) {
                         Image("5pic")
                             .customImageStyle()
                         }
-                    Spacer()
                     
+                    Spacer()
                     // On tap takes user to easy game screen with 10 questions
-                    NavigationLink(destination: EasyView10()) {
+                    NavigationLink(destination: EasyView10(vm: EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 10)))) {
                         Image("10pic")
                             .customImageStyle()
 
                      }
                     Spacer()
-                    
                     // On tap takes user to easy game screen with 20 questions
-                    NavigationLink(destination: EasyView20()) {
+                    NavigationLink(destination: EasyView20(vm: EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 20)))) {
                         Image("20pic")
                             .customImageStyle()
                     }

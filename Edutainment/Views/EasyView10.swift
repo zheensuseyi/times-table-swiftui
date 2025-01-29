@@ -1,141 +1,40 @@
 //
-//  EasyView20.swift
+//  EasyView5.swift
 //  Edutainment
 //
 //  Created by Zheen Suseyi on 10/13/24.
 //
-/* Game Screen that asks 20 easy questions, only change from EasyView5 is number of questions */
+/* Game Screen that asks 5 easy questions, after 5 questions the users score is given and the game is restarted .*/
 
 import SwiftUI
 struct EasyView10: View {
-    @State private var questionNumber = 1
-    @State private var randomNumber1 = Int.random(in: 0...5)
-    @State private var randomNumber2 = Int.random(in: 0...5)
-    @State private var randomEmoji = Int.random(in: 0...3)
-    @State private var selection: Int = 0
-    @State private var scoreTitle = ""
-    @State private var showAlert = false
-    @State private var showingScore = false
-    @State private var gameOver = false
-    @State private var userScore = 0
-    @State private var emojiArray = ["🤔", "🦄", "👽", "🤠"].shuffled()
-    @State private var animationAmount = 0.0
-    
-    let maxQuestions = 10
-
-    
-    var answer: Int {
-        return randomNumber1 * randomNumber2
-    }
-    
-    var products: [Int] {
-        var productsSet = Set<Int>()
-        
-        for a in 0...5 {
-            for b in 0...5 {
-                productsSet.insert(a * b)
-            }
-        }
-        return productsSet.sorted()
-    }
-    
-    
+    @ObservedObject var vm: EdutainmentViewModel = EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 10))
+    @State private var input: String = ""
+    @State private var number: Int?
     var body: some View {
         ZStack {
             backgroundGradient()
-            
-                .alert(scoreTitle, isPresented: $showingScore) {
-                    Button("Continue", action: askQuestion)
-                } message: {
-                    Text("Ready for the next question?")
-                }
-            
-                .alert(scoreTitle, isPresented: $gameOver) {
-                    Button("Game Over! Restart?", action: restartGame)
-                } message: {
-                    Text("Your Score Was \(userScore) ")
-                }
-            
             VStack  {
-                Text("Your Score: \(userScore)")
+                // Shows the user their score
+                Text(vm.displayScore)
+                // Custom text extension
                     .ScoreTextStyle()
-                Spacer()
-                Text("Question \(questionNumber) / \(maxQuestions) 🤩")
+                // Shows the number of questions that updates
+                Text(vm.displayQuestionNumber)
+                // Custom text extension
                     .questionTextStyle()
                 Spacer()
-                .padding(0)
-                Text("\(emojiArray[randomEmoji])\(randomNumber1) x \(randomNumber2) = ?")
+                // Shows the user the problem that must be solved, random emoji is assigned with every new problem
+                Text(vm.displayQuestion)
                     .problemTextStyle()
+                    
                 Spacer()
-                .padding()
-                Picker("Select a Number", selection: $selection) {
-                    ForEach(products, id: \.self) { number in
-                        Text("\(number)")
-                            .foregroundColor(.black) 
-                            .tag(number)
-                    }
-                }
-                .pickerStyle()
-                Spacer()
-                .padding()
-                Button(action: { numberSelected(selection) }) {
-                    Text("Tap Here To Enter Answer 🚨")
-                        .buttonTextStyle()
-                }
-                .rotationEffect(.degrees(animationAmount))
-                .animation(.easeInOut(duration: 1.0), value: animationAmount)
             }
+            .padding()
         }
-    }
-    
-    func numberSelected(_ number: Int) {
-        if questionNumber != 10 {
-            if(number == answer) {
-                scoreTitle = "Correct"
-                userScore += 1
-                questionNumber += 1
-            }
-            else {
-                scoreTitle = "Incorrect! The correct answer was \(answer)"
-                questionNumber += 1
-            }
-            showingScore = true
-        }
-        else if questionNumber == 10  {
-            if(number == answer) {
-                scoreTitle = "Correct"
-                userScore += 1
-                gameOver = true
-            }
-            else {
-                scoreTitle = "Incorrect! The correct answer was \(answer)"
-                gameOver = true
-            }
-        }
-        else {
-            gameOver = true
-        }
-        withAnimation {
-            animationAmount += 360
-        }
-    }
-    
-    func askQuestion() {
-        emojiArray.shuffle()
-        randomNumber1 = Int.random(in: 0...5)
-        randomNumber2 = Int.random(in: 0...5)
-        selection = products.randomElement() ?? 0
-    }
-    
-    func restartGame() {
-        userScore = 0
-        questionNumber = 1
-        randomNumber1 = Int.random(in: 0...5)
-        randomNumber2 = Int.random(in: 0...5)
-        selection = products.randomElement() ?? 0
     }
 }
 
 #Preview {
-    EasyView10()
+    EasyView10(vm: EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 10)))
 }

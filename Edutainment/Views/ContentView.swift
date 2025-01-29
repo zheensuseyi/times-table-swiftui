@@ -29,10 +29,9 @@ struct ContentView: View {
                 // Wrapping everything in a VStack
                 VStack(spacing: -46) {
                     // Title with custom text modifier from seperate file extension
-                    Text("SELECT PRACTICE TABLE🦾")
+                    Text("SELECT PRACTICE TABLE")
                         .QSelectTextStyle()
                     Spacer()
-                    
                     // Easy Tables practice, upon tap it takes user to the next screen
                     NavigationLink(destination: EasyQuestionSelect()) {
                         Image("easytablefinal")
@@ -40,14 +39,12 @@ struct ContentView: View {
                             .customImageStyle2()
                     }
                     Spacer()
-                    
                     // Medium Tables practice, upon tap it takes user to the next screen
                     NavigationLink(destination: MediumQuestionSelect()) {
                         Image("mediumtable")
                             .customImageStyle2()
                     }
                     Spacer()
-                    
                     // Hard Tables practice, upon tap it takes user to the next screen
                     NavigationLink(destination: HardQuestionSelect()) {
                         Image("hardtables")
@@ -57,7 +54,6 @@ struct ContentView: View {
             }
         }
     }
-
 }
                 
 #Preview {

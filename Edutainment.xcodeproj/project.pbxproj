@@ -19,11 +19,14 @@
 		ADCA902B2CBDA6D900E05F6E /* HardView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCA902A2CBDA6D900E05F6E /* HardView5.swift */; };
 		ADCA902D2CBDA6E600E05F6E /* HardView10.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCA902C2CBDA6E600E05F6E /* HardView10.swift */; };
 		ADCA902F2CBDA6F400E05F6E /* HardView20.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCA902E2CBDA6F400E05F6E /* HardView20.swift */; };
+		ADCCC4D32D2E0F9B0090D19B /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCC4D22D2E0F9B0090D19B /* AudioManager.swift */; };
 		ADCE2E912CBC5F23009FF19C /* TextModifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCE2E902CBC5F23009FF19C /* TextModifierView.swift */; };
 		ADCE2E992CBC7E35009FF19C /* EasyView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCE2E982CBC7E35009FF19C /* EasyView5.swift */; };
 		ADCE2E9B2CBC7E42009FF19C /* EasyView10.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCE2E9A2CBC7E42009FF19C /* EasyView10.swift */; };
 		ADCE2E9D2CBC7E4C009FF19C /* EasyView20.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCE2E9C2CBC7E4C009FF19C /* EasyView20.swift */; };
 		ADCE2E9F2CBC8F98009FF19C /* EasyQuestionSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCE2E9E2CBC8F98009FF19C /* EasyQuestionSelect.swift */; };
+		ADD435492D4980E6004A16AA /* EdutainmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD435482D4980E6004A16AA /* EdutainmentViewModel.swift */; };
+		ADD4354B2D498424004A16AA /* EdutainmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD4354A2D498424004A16AA /* EdutainmentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,11 +43,14 @@
 		ADCA902A2CBDA6D900E05F6E /* HardView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardView5.swift; sourceTree = "<group>"; };
 		ADCA902C2CBDA6E600E05F6E /* HardView10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardView10.swift; sourceTree = "<group>"; };
 		ADCA902E2CBDA6F400E05F6E /* HardView20.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardView20.swift; sourceTree = "<group>"; };
+		ADCCC4D22D2E0F9B0090D19B /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		ADCE2E902CBC5F23009FF19C /* TextModifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifierView.swift; sourceTree = "<group>"; };
 		ADCE2E982CBC7E35009FF19C /* EasyView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyView5.swift; sourceTree = "<group>"; };
 		ADCE2E9A2CBC7E42009FF19C /* EasyView10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyView10.swift; sourceTree = "<group>"; };
 		ADCE2E9C2CBC7E4C009FF19C /* EasyView20.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyView20.swift; sourceTree = "<group>"; };
 		ADCE2E9E2CBC8F98009FF19C /* EasyQuestionSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyQuestionSelect.swift; sourceTree = "<group>"; };
+		ADD435482D4980E6004A16AA /* EdutainmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdutainmentViewModel.swift; sourceTree = "<group>"; };
+		ADD4354A2D498424004A16AA /* EdutainmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdutainmentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,9 @@
 			isa = PBXGroup;
 			children = (
 				AD1442632CB9CCF20092EE3C /* Views */,
+				ADD435482D4980E6004A16AA /* EdutainmentViewModel.swift */,
+				ADD4354A2D498424004A16AA /* EdutainmentModel.swift */,
+				ADCCC4D22D2E0F9B0090D19B /* AudioManager.swift */,
 				AD1442552CB9C4310092EE3C /* EdutainmentApp.swift */,
 				AD1442592CB9C4330092EE3C /* Assets.xcassets */,
 				AD14425B2CB9C4330092EE3C /* Preview Content */,
@@ -184,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD4354B2D498424004A16AA /* EdutainmentModel.swift in Sources */,
 				ADCA902D2CBDA6E600E05F6E /* HardView10.swift in Sources */,
 				ADCE2E912CBC5F23009FF19C /* TextModifierView.swift in Sources */,
 				ADCE2E9D2CBC7E4C009FF19C /* EasyView20.swift in Sources */,
@@ -194,9 +204,11 @@
 				ADCA902F2CBDA6F400E05F6E /* HardView20.swift in Sources */,
 				AD1442562CB9C4310092EE3C /* EdutainmentApp.swift in Sources */,
 				ADCE2E9F2CBC8F98009FF19C /* EasyQuestionSelect.swift in Sources */,
+				ADCCC4D32D2E0F9B0090D19B /* AudioManager.swift in Sources */,
 				ADCA90252CBCA06100E05F6E /* MediumView10.swift in Sources */,
 				ADCE2E9B2CBC7E42009FF19C /* EasyView10.swift in Sources */,
 				ADCA90232CBCA05800E05F6E /* MediumView5.swift in Sources */,
+				ADD435492D4980E6004A16AA /* EdutainmentViewModel.swift in Sources */,
 				ADCA902B2CBDA6D900E05F6E /* HardView5.swift in Sources */,
 				ADCA90212CBCA03C00E05F6E /* MediumQuestionSelect .swift in Sources */,
 			);
