@@ -27,7 +27,8 @@ struct EasyView5: View {
                 // Shows the user the problem that must be solved, random emoji is assigned with every new problem
                 Text(vm.displayQuestion)
                     .problemTextStyle()
-                    
+                Text(vm.displayChoices)
+                Text("pi")
                 Spacer()
             }
             .padding()

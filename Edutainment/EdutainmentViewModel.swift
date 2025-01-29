@@ -8,35 +8,21 @@
 import SwiftUI
 
 class EdutainmentViewModel: ObservableObject {
-  //  var easyGame5 = timesTableGame(gameDifficulty: 5, numberOfQuestions: 5)
-   /* private static let easyGame10 = timesTableGame(gameDifficulty: 5, numberOfQuestions: 10)
-    private static let easyGame15 = timesTableGame(gameDifficulty: 5, numberOfQuestions: 15)
-    private static let mediumGame5 = timesTableGame(gameDifficulty: 8, numberOfQuestions: 5)
-    private static let mediumGame10 = timesTableGame(gameDifficulty: 8, numberOfQuestions: 10)
-    private static let mediumGame15 = timesTableGame(gameDifficulty: 8, numberOfQuestions: 15)
-    private static let hardGame5 = timesTableGame(gameDifficulty: 12, numberOfQuestions: 5)
-    private static let hardGame10 = timesTableGame(gameDifficulty: 12, numberOfQuestions: 10)
-    private static let hardGame15 = timesTableGame(gameDifficulty: 12, numberOfQuestions: 15)
-   */
     var currentViewModel: timesTableGame
     var emojiArray: Array<String>{
         return currentViewModel.emojiArray
     }
-    @Published var numberOfQuestions: Int
-    @Published var userScore: Int
-    @Published var question: String
+    var choicesArray: Array<Int>{
+        return currentViewModel.choicesArray.shuffled()
+    }
     var answer: Int {
         return currentViewModel.answer
     }
-    init(currentViewModel: timesTableGame) {
-        self.currentViewModel = currentViewModel
-        self.question = currentViewModel.question
-        self.numberOfQuestions = currentViewModel.numberOfQuestions
-        self.userScore = currentViewModel.userScore
-    }
-    
     var displayQuestion: String{
         return "\(question) = ?"
+    }
+    var displayChoices: String{
+        return "Choose your Answer: \(choicesArray[0]), \(choicesArray[1]), \(choicesArray[2]), \(choicesArray[3])"
     }
     var displayScore: String {
         return "Your Score: \(userScore)"
@@ -45,7 +31,16 @@ class EdutainmentViewModel: ObservableObject {
         return ("Questions Left: \(numberOfQuestions)🤩")
     }
     
-    
+    @Published var numberOfQuestions: Int
+    @Published var userScore: Int
+    @Published var question: String
+  
+    init(currentViewModel: timesTableGame) {
+        self.currentViewModel = currentViewModel
+        self.question = currentViewModel.question
+        self.numberOfQuestions = currentViewModel.numberOfQuestions
+        self.userScore = currentViewModel.userScore
+    }
     func answerCheck(_ userAnswer: Int) {
         currentViewModel.answerCheck(userAnswer)
     }
