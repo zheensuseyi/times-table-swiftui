@@ -14,6 +14,7 @@ class EdutainmentViewModel: ObservableObject {
     @Published var question: String
     @Published var answer: Int
     @Published var answerArray: Array<Int>
+    @Published var emojiArray: Array<String>
     init(currentViewModel: timesTableGame) {
         self.currentViewModel = currentViewModel
         self.question = currentViewModel.question
@@ -21,10 +22,7 @@ class EdutainmentViewModel: ObservableObject {
         self.userScore = currentViewModel.userScore
         self.answer = currentViewModel.answer
         self.answerArray = currentViewModel.answerArray
-    }
-    
-    private var emojiArray: Array<String>{
-        return currentViewModel.emojiArray
+        self.emojiArray = currentViewModel.emojiArray
     }
     
     func checkAnswer(_ userAnswer: Int) {
@@ -39,6 +37,7 @@ class EdutainmentViewModel: ObservableObject {
            
            // Replace the old game with the updated one
            currentViewModel = updatedGame
+           emojiArray = currentViewModel.emojiArray
            question = currentViewModel.question
            numberOfQuestions = currentViewModel.numberOfQuestions
            userScore = currentViewModel.userScore

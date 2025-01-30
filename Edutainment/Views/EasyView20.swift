@@ -21,24 +21,29 @@ struct EasyView20: View {
                     .questionTextStyle()
                 Spacer()
                 
-                Text("\(vm.question) = ?")
+                Text("\(vm.emojiArray[0])\(vm.question) = ?")
                     .problemTextStyle()
                 
                 Spacer()
-                Text("\(vm.answerArray)")
-                
                 // FIXME: Add multiple buttons, 3 with wrong answer, one with right one. Make the buttons look like Cards.
-                Button(action: {
-                    vm.checkAnswer(6)
-                            }) {
-                                Text("Tap Me")
-                                    .padding()
-                                    .background(Color.red)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
-                .foregroundColor(.black)
-                
+                HStack {
+                    ForEach(vm.answerArray, id: \.self) { item in
+                        Button(action: {
+                            vm.checkAnswer(item)
+                        }) {
+                            Text("\(item)")
+                                .font(.largeTitle)
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .fontWeight(.bold)
+                        }
+                    }
+                    
+                    .foregroundColor(.black)
+                    
+                }
             }
             .padding()
         }
