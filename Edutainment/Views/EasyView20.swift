@@ -9,6 +9,7 @@
 import SwiftUI
 struct EasyView20: View {
     @ObservedObject var vm: EdutainmentViewModel = EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 20))
+    // FIXME: Add Alerts and Animations back into the program.
     var body: some View {
         ZStack {
             backgroundGradient()
@@ -25,6 +26,8 @@ struct EasyView20: View {
                 
                 Spacer()
                 Text("\(vm.answerArray)")
+                
+                // FIXME: Add multiple buttons, 3 with wrong answer, one with right one. Make the buttons look like Cards.
                 Button(action: {
                     vm.checkAnswer(6)
                             }) {

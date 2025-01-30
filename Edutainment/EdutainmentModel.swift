@@ -48,6 +48,7 @@ struct timesTableGame {
             answerArray = answerSet.shuffled()
             numberOfQuestions -= 1
         }
+        // FIXME: Perhaps make a new function that restarts the game instead of just printing to console
         else {
             print("game over")
         }
