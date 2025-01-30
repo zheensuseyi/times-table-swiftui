@@ -75,7 +75,7 @@ struct timesTableGame {
         }
         // FIXME: Perhaps make a new function that restarts the game instead of just printing to console
         else {
-            print("game over")
+            question = ("GAME OVER")
         }
     }
 }
