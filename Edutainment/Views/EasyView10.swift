@@ -9,32 +9,40 @@
 import SwiftUI
 struct EasyView10: View {
     @ObservedObject var vm: EdutainmentViewModel = EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 10))
-    @State private var input: String = ""
-    @State private var number: Int?
     var body: some View {
         ZStack {
             backgroundGradient()
             VStack  {
-                // Shows the user their score
-                Text(vm.displayScore)
-                // Custom text extension
+                Text("Score: \(vm.userScore)")
                     .ScoreTextStyle()
-                // Shows the number of questions that updates
-                Text(vm.displayQuestionNumber)
-                // Custom text extension
+                
+                Text("Questions Left: \(vm.numberOfQuestions)😼")
                     .questionTextStyle()
                 Spacer()
-                // Shows the user the problem that must be solved, random emoji is assigned with every new problem
-                Text(vm.displayQuestion)
+                
+                Text("\(vm.question) = ?")
                     .problemTextStyle()
-                    
+                
                 Spacer()
+                Text("\(vm.answerArray)")
+                Button(action: {
+                    vm.checkAnswer(6)
+                            }) {
+                                Text("Tap Me")
+                                    .padding()
+                                    .background(Color.red)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                .foregroundColor(.black)
+                
             }
             .padding()
         }
     }
 }
 
+
 #Preview {
-    EasyView10(vm: EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 10)))
+    EasyView20(vm: EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 10)))
 }

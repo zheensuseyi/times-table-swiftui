@@ -8,51 +8,45 @@
 import SwiftUI
 
 class EdutainmentViewModel: ObservableObject {
-    var currentViewModel: timesTableGame
-    var emojiArray: Array<String>{
-        return currentViewModel.emojiArray
-    }
-    var choicesArray: Array<Int>{
-        return currentViewModel.choicesArray.shuffled()
-    }
-    var answer: Int {
-        return currentViewModel.answer
-    }
-    var displayQuestion: String{
-        return "\(question) = ?"
-    }
-    var displayChoices: String{
-        return "Choose your Answer: \(choicesArray[0]), \(choicesArray[1]), \(choicesArray[2]), \(choicesArray[3])"
-    }
-    var displayScore: String {
-        return "Your Score: \(userScore)"
-    }
-    var displayQuestionNumber: String {
-        return ("Questions Left: \(numberOfQuestions)🤩")
-    }
-    
+    @Published var currentViewModel: timesTableGame
     @Published var numberOfQuestions: Int
     @Published var userScore: Int
     @Published var question: String
-  
+    @Published var answer: Int
+    @Published var answerArray: Array<Int>
     init(currentViewModel: timesTableGame) {
         self.currentViewModel = currentViewModel
         self.question = currentViewModel.question
         self.numberOfQuestions = currentViewModel.numberOfQuestions
         self.userScore = currentViewModel.userScore
+        self.answer = currentViewModel.answer
+        self.answerArray = currentViewModel.answerArray
     }
-    func answerCheck(_ userAnswer: Int) {
-        currentViewModel.answerCheck(userAnswer)
+    
+    private var emojiArray: Array<String>{
+        return currentViewModel.emojiArray
     }
-    // restartGame function when user reaches max questions, an alert calls this function
-    func restartGame() {
-        // reset user score
-        currentViewModel.userScore = 0
-        // reset questionNumber
-        currentViewModel.numberOfQuestions = currentViewModel.numberOfQuestions
-        // Shuffles both randomNumbers (the range changes in other difficulties)
-        currentViewModel.randomNumber1 = Int.random(in: 0...currentViewModel.gameDifficulty)
-        currentViewModel.randomNumber2 = Int.random(in: 0...currentViewModel.gameDifficulty)
-    }
+    
+    func checkAnswer(_ userAnswer: Int) {
+           // Create a mutable copy of the current game
+           var updatedGame = currentViewModel
+           
+           // Check if the answer is correct
+           let isCorrect = userAnswer == updatedGame.answer
+           
+           // Update the game state
+           updatedGame.displayNextQuestion(isCorrect)
+           
+           // Replace the old game with the updated one
+           currentViewModel = updatedGame
+           question = currentViewModel.question
+           numberOfQuestions = currentViewModel.numberOfQuestions
+           userScore = currentViewModel.userScore
+           answer = currentViewModel.answer
+           answerArray = currentViewModel.answerArray
+       }
 }
+
+
+
 

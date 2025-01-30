@@ -7,28 +7,49 @@
 
 import Foundation
 struct timesTableGame {
-    var userScore = 0
-    var emojiArray = ["🤔", "🦄", "👽", "🤠"]
     var gameDifficulty: Int
     var numberOfQuestions: Int
+    var userScore = 0
+    var emojiArray = ["🤔", "🦄", "👽", "🤠"]
     var randomNumber1: Int
     var randomNumber2: Int
     var question: String
     var answer: Int
-    var choicesArray: Array<Int>
+    var answerSet = Set<Int>()
+    var answerArray: Array<Int>
     init(gameDifficulty: Int, numberOfQuestions: Int) {
-        choicesArray = []
+        for i in 1...gameDifficulty {
+            for k in 1...gameDifficulty {
+                answerSet.insert(i * k)
+            }
+        }
+        answerArray = answerSet.shuffled()
         self.gameDifficulty = gameDifficulty
         self.numberOfQuestions = numberOfQuestions
-        randomNumber1 = Int.random(in: 0...gameDifficulty)
-        randomNumber2 = Int.random(in: 0...gameDifficulty)
+        randomNumber1 = Int.random(in: 1...gameDifficulty)
+        randomNumber2 = Int.random(in: 1...gameDifficulty)
         answer = randomNumber1 * randomNumber2
         question = ("\(randomNumber1) * \(randomNumber2)")
     }
-    mutating func answerCheck(_ userAnswer: Int) {
-        if userAnswer == answer {
-            userScore += 1
+    mutating func displayNextQuestion(_ isCorrect: Bool) {
+        // Update userScore if the answer is correct
+        print("hi")
+        if numberOfQuestions != 0 {
+            if isCorrect {
+                userScore += 1
+            }
+            // Generate new random numbers and update the question and answer
+            randomNumber1 = Int.random(in: 1...gameDifficulty)
+            randomNumber2 = Int.random(in: 1...gameDifficulty)
+            answer = randomNumber1 * randomNumber2
+            question = "\(randomNumber1) * \(randomNumber2)"
+            
+            // Shuffle the answerArray for the new question
+            answerArray = answerSet.shuffled()
+            numberOfQuestions -= 1
         }
-        numberOfQuestions -= 1
+        else {
+            print("game over")
+        }
     }
 }
