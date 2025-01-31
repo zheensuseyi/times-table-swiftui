@@ -48,7 +48,15 @@ struct EasyView20: View {
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                                     .fontWeight(.bold)
+                                    .alert("Game Over", isPresented: $vm.gameOver) {
+                                                   Button("New Game") {
+                                                       vm.checkAnswer(item) // Calls the function in ViewModel
+                                                   }
+                                            } message: {
+                                                Text("Final Score: \(vm.userScore)")
+                                            }
                             }
+                           
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure the grid fills the available space

@@ -1,11 +1,5 @@
-//
-//  EdutainmentModel.swift
-//  Edutainment
-//
-//  Created by Zheen Suseyi on 1/28/25.
-//
-
 import Foundation
+
 struct timesTableGame {
     var gameDifficulty: Int
     var numberOfQuestions: Int
@@ -15,67 +9,57 @@ struct timesTableGame {
     var randomNumber2: Int
     var question: String
     var answer: Int
-    var answerSet = Set<Int>()
-    var answerArray: Array<Int>
+    var answerSet: Set<Int>
+    var answerArray: [Int]
+    var gameOver: Bool = false
+
     init(gameDifficulty: Int, numberOfQuestions: Int) {
         self.gameDifficulty = gameDifficulty
         self.numberOfQuestions = numberOfQuestions
-        randomNumber1 = Int.random(in: 1...gameDifficulty)
-        randomNumber2 = Int.random(in: 1...gameDifficulty)
-        answer = randomNumber1 * randomNumber2
-        question = ("\(randomNumber1) * \(randomNumber2)")
-        
-        
-        for i in 1...gameDifficulty {
-            for k in 1...gameDifficulty {
-                answerSet.insert(i * k)
-            }
-        }
-        answerArray = [answer]
-        let tempArr = answerSet.shuffled()
-        var i = 0
-        var k = 0
-        while k <= 2 && i < answerSet.count {
-            if !answerArray.contains(tempArr[i]) {
-                answerArray.append(tempArr[i])
-                k += 1
-            }
-            i += 1
-        }
-        answerArray = answerArray.shuffled()
+        self.answerSet = timesTableGame.generateAnswerSet(for: gameDifficulty)
+        (self.randomNumber1, self.randomNumber2, self.answer, self.question, self.answerArray) = timesTableGame.generateNewQuestion(gameDifficulty, from: answerSet)
     }
-    mutating func displayNextQuestion(_ isCorrect: Bool) {
-        // Update userScore if the answer is correct
-        print("hi")
-        if numberOfQuestions != 0 {
-            if isCorrect {
-                userScore += 1
+
+    static func generateAnswerSet(for difficulty: Int) -> Set<Int> {
+        var set = Set<Int>()
+        for i in 1...difficulty {
+            for k in 1...difficulty {
+                set.insert(i * k)
             }
-            // Generate new random numbers and update the question and answer
-            emojiArray = emojiArray.shuffled()
-            randomNumber1 = Int.random(in: 1...gameDifficulty)
-            randomNumber2 = Int.random(in: 1...gameDifficulty)
-            answer = randomNumber1 * randomNumber2
-            question = "\(randomNumber1) * \(randomNumber2)"
-            
-            // Shuffle the answerArray for the new question
-            answerArray = [answer]
-            let tempArr = answerSet.shuffled()
-            var i = 0
-            var k = 0
-            while k <= 2 && i < answerSet.count {
-                if !answerArray.contains(tempArr[i]) {
-                    answerArray.append(tempArr[i])
-                    k += 1
-                }
-                i += 1
-            }
-            answerArray = answerArray.shuffled()
-            numberOfQuestions -= 1
         }
-        // FIXME: Perhaps make a new function that restarts the game instead of just printing to console
+        return set
+    }
+
+    static func generateNewQuestion(_ difficulty: Int, from answerSet: Set<Int>) -> (Int, Int, Int, String, [Int]) {
+        let num1 = Int.random(in: 1...difficulty)
+        let num2 = Int.random(in: 1...difficulty)
+        let correctAnswer = num1 * num2
+        let questionText = "\(num1) * \(num2)"
+
+        var answers = [correctAnswer]
+        let shuffledAnswers = answerSet.shuffled()
+        var index = 0
+
+        while answers.count < 4, index < shuffledAnswers.count {
+            let potentialAnswer = shuffledAnswers[index]
+            if potentialAnswer != correctAnswer {
+                answers.append(potentialAnswer)
+            }
+            index += 1
+        }
+        return (num1, num2, correctAnswer, questionText, answers.shuffled())
+    }
+
+    mutating func displayNextQuestion(_ isCorrect: Bool) {
+        if isCorrect {
+            userScore += 1
+        }
+        if numberOfQuestions > 0 {
+            (randomNumber1, randomNumber2, answer, question, answerArray) = timesTableGame.generateNewQuestion(gameDifficulty, from: answerSet)
+            numberOfQuestions -= 1
+        } 
         else {
-            question = ("GAME OVER")
+            gameOver = true
         }
     }
 }
