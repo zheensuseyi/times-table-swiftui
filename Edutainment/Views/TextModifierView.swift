@@ -5,7 +5,7 @@
 //  Created by Zheen Suseyi on 10/13/24.
 //
 import SwiftUI
-
+// FIXME: fix this spagetti code file lol
 // For # Of Questions Image Modifers
 extension Image {
     func customImageStyle(width: CGFloat = 100, height: CGFloat = 100, cornerRadius: CGFloat = 10, shadowRadius: CGFloat = 5) -> some View {
@@ -156,6 +156,28 @@ struct TextModifierView8: ViewModifier {
     }
 }
 
+struct AnswerButtonStyle: ViewModifier {
+    var width: CGFloat
+    var height: CGFloat
+
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .padding()
+            .frame(width: width, height: height)
+            .background(Color.red)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .fontWeight(.bold)
+    }
+}
+
+// Extension to make it easier to apply the modifier
+extension View {
+    func answerButtonStyle(width: CGFloat, height: CGFloat) -> some View {
+        self.modifier(AnswerButtonStyle(width: width, height: height))
+    }
+}
 
 
 

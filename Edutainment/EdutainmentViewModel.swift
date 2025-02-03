@@ -14,9 +14,9 @@ class EdutainmentViewModel: ObservableObject {
     @Published var question: String
     @Published var correctAnswer: Int
     @Published var answerArray: Array<Int>
-    @Published var emojiArray: Array<String>
     @Published var gameOver: Bool
     @Published var placeHolderViewModel: timesTableGame
+    var emojiArray: Array<String>
 
     init(currentViewModel: timesTableGame) {
         self.currentViewModel = currentViewModel
@@ -29,7 +29,7 @@ class EdutainmentViewModel: ObservableObject {
         self.gameOver = currentViewModel.gameOver
         self.placeHolderViewModel = currentViewModel
     }
-    
+
     func checkAnswer(_ userAnswer: Int) {
         if currentViewModel.gameOver {
             currentViewModel = createNewGame(currentViewModel)
@@ -50,8 +50,28 @@ class EdutainmentViewModel: ObservableObject {
         question = currentViewModel.question
         correctAnswer = currentViewModel.correctAnswer
         answerArray = currentViewModel.answerArray
-        emojiArray = currentViewModel.emojiArray
         gameOver = currentViewModel.gameOver
+    }
+    var randomEmoiji: String {
+        emojiArray.randomElement() ?? "❓"
+    }
+}
+
+extension EdutainmentViewModel {
+    func gridItemWidthThatFits(count: Int, size: CGSize, aspectRatio: CGFloat) -> CGFloat {
+        let count = CGFloat(count)
+        var columnCount = 2.0
+        repeat {
+            let width = size.width / columnCount
+            let height = width / aspectRatio
+            
+            let rowCount = (count / columnCount).rounded(.up)
+            if rowCount * height <= size.height {
+                return width.rounded(.down)
+            }
+            columnCount += 1
+        } while columnCount <= count // Ensure columnCount doesn't exceed count
+        return (size.width / count)
     }
 }
 

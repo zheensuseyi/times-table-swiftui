@@ -4,7 +4,7 @@ struct timesTableGame {
     var gameDifficulty: Int
     var numberOfQuestions: Int
     var userScore = 0
-    var emojiArray = ["🤔", "🦄", "👽", "🤠"]
+    let emojiArray = ["🤔", "🦄", "👽", "🤠"]
     var randomNumber1: Int
     var randomNumber2: Int
     var question: String

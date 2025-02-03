@@ -7,7 +7,7 @@
 /* Game Screen that asks 5 easy questions, after 5 questions the users score is given and the game is restarted .*/
 
 import SwiftUI
-// FIXME: Add animations, put GeometryReader and its function in its own file
+// FIXME: Add animations
 struct EasyView20: View {
     @ObservedObject var vm: EdutainmentViewModel = EdutainmentViewModel(currentViewModel: timesTableGame(gameDifficulty: 5, numberOfQuestions: 20))
     var body: some View {
@@ -16,14 +16,11 @@ struct EasyView20: View {
             VStack  {
                 Text("Score: \(vm.userScore)")
                     .ScoreTextStyle()
-                
                 Text("Questions Left: \(vm.numberOfQuestions)😼")
                     .questionTextStyle()
                 Spacer()
-                
-                Text("\(vm.emojiArray[0])\(vm.question) = ?")
+                Text("\(vm.randomEmoiji)\(vm.question) = ?")
                     .problemTextStyle()
-                
                 Spacer()
                 AnswerGridView(vm:vm)
             }
